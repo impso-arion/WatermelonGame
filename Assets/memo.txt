@@ -1,0 +1,43 @@
+スクリプトに関連するメモ
+
+
+Nextdirector.cs
+	フラグ
+		nextball　ネクストボール有無。初期値はfalse
+	仕様
+		GameDirectorの　IsClear　がtrueであり、nextballがfalseのとき
+		ボールを産み落とす。
+		産み落とされたボールの名称は"NextBall"である。
+
+
+GameDirector.cs
+	フラグ
+		IsClear　クリアしているかどうか
+
+CursorCotroller.cs
+	フラグ
+		ishang　カーソルになにか吊っているかどうか。ボールを持っているかどうか
+
+	仕様
+		ishang　falseならボールを取りにゆく
+
+
+BallController.cs
+	フラグ
+		isHangd　吊られたボールであるかどうか。
+
+	仕様
+		isHangd がtrueの場合はrigidBody 2Dがキネマティックになり　Circle Colliderがfalseになる
+
+
+
+
+
+
+
+ゲーム開始時
+	Nextdirectorは、ボールが手元にないので生成する
+	CursorControllerはボールが手元にないのでNextdirectorから取得する
+		Nextdirectorにもボールを取ったのでnextballフラグをfalseにしてやる
+
+
