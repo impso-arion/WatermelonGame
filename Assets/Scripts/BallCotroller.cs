@@ -14,6 +14,7 @@ public class BallCotroller : MonoBehaviour
     string myTag = "";
 
     private bool isEntity = false;//登場したボールかどうか。ゲームオーバー判定にする。
+    private float gameovertime = 0f;//ゲームオーバーライン以上にいればカウントアップ
 
     //合体したかどうか
     //public bool isMergeFlag = false;
@@ -42,8 +43,8 @@ public class BallCotroller : MonoBehaviour
         _rb.isKinematic = isHangd;
         _cc2D1.enabled = !isHangd;
 
-        //isEntityフラグがtrueで一定の場所以上だったらクリア(ゲームオーバー)
-        if(isEntity == true && transform.position.y > 2.6)
+        //isEntityフラグがtrueで一定の場所以上に３秒存在したらクリア(ゲームオーバー)
+/*        if(isEntity == true && transform.position.y > 2.6)
         {
             if (gameDirector != null)
             {
@@ -52,8 +53,47 @@ public class BallCotroller : MonoBehaviour
                 //一度だけ呼び出せばよいので、フラグを戻す
                 isEntity = false;
             }
+        }*/
+
+        //-----------------------------------------
+        if (isEntity == true && transform.position.y > 2.6)
+        {
+            // isEntityがtrueで、一定の場所以上にいる場合
+
+            gameovertime += Time.deltaTime; // 経過時間を加算
+
+
+            switch gameovertime
+
+
+
+
+
+            if (gameovertime >= 3f)
+            {
+                // 3秒以上経過かつゲームオーバー処理がまだ行われていない場合
+
+                if (gameDirector != null)
+                {
+                    gameDirector.SetGameClear();
+                    //gameDirector.isClear = true;//クリアにすることで、ネクストが発生しなくなる
+                    //一度だけ呼び出せばよいので、フラグを戻す
+               
+                }
+            }
         }
+        else
+        {
+            // isEntityがfalseになった場合、経過時間をリセット
+            gameovertime = 0f;
+        }
+
     }
+
+
+
+
+
 
     // 外部からisHangdフラグを設定するためのメソッド
     public void SetIsHangd(bool value)
