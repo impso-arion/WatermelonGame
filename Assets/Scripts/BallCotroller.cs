@@ -63,7 +63,7 @@ public class BallCotroller : MonoBehaviour
             gameovertime += Time.deltaTime; // Œo‰ßŽžŠÔ‚ð‰ÁŽZ
 
 
-            switch gameovertime
+            
 
 
 
